@@ -7,9 +7,9 @@ const playerImage = new Image();
 const obstacleImage = new Image();
 const backgroundImage = new Image();
 
-playerImage.src = '주인공.png'; // 주인공 이미지 경로
-obstacleImage.src = '장애물.png'; // 장애물 이미지 경로
-backgroundImage.src = '배경.jpg'; // 배경 이미지 경로
+playerImage.src = 'main.png'; // 주인공 이미지 경로
+obstacleImage.src = 'obstacle.png'; // 장애물 이미지 경로
+backgroundImage.src = 'background.jpg'; // 배경 이미지 경로
 
 const player = { x: 50, y: canvas.height / 2, width: canvas.height/10, height: canvas.height/10, speed: 5 }; // 크기 조정
 const lasers = [];
