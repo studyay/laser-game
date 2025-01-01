@@ -7,11 +7,11 @@ const playerImage = new Image();
 const obstacleImage = new Image();
 const backgroundImage = new Image();
 
-playerImage.src = 'main.png'; // 주인공 이미지 경로
-obstacleImage.src = 'obstacle.png'; // 장애물 이미지 경로
-backgroundImage.src = 'background.jpg'; // 배경 이미지 경로
+playerImage.src = '주인공.png'; // 주인공 이미지 경로
+obstacleImage.src = '장애물.png'; // 장애물 이미지 경로
+backgroundImage.src = '배경.jpg'; // 배경 이미지 경로
 
-const player = { x: 50, y: canvas.height / 2, width: canvas.height/10, height: canvas.height/10, speed: 5 }; // 크기 조정
+const player = { x: 50, y: canvas.height / 2, width: canvas.height / 10, height: canvas.height / 10, speed: 5 }; // 크기 조정
 const lasers = [];
 const obstacles = [];
 let obstacleInterval = 2000; // 장애물 생성 간격 (ms)
@@ -41,7 +41,7 @@ function drawPlayer() {
 function drawLasers() {
     ctx.fillStyle = 'red';
     lasers.forEach(laser => {
-        ctx.fillRect(laser.x, laser.y, canvas.height/25, canvas.height/100);
+        ctx.fillRect(laser.x, laser.y, canvas.height / 25, canvas.height / 100);
         laser.x += 5; // 레이저 이동
     });
 }
@@ -49,7 +49,7 @@ function drawLasers() {
 // 장애물 그리기
 function drawObstacles() {
     obstacles.forEach(obs => {
-        ctx.drawImage(obstacleImage, obs.x, obs.y, canvas.height/10, canvas.height/10);
+        ctx.drawImage(obstacleImage, obs.x, obs.y, canvas.height / 10, canvas.height / 10);
         obs.x -= 3; // 장애물 이동
         if (obs.x < 0) {
             gameOver = true; // 장애물이 왼쪽 끝 도달
@@ -59,7 +59,7 @@ function drawObstacles() {
 
 // 장애물 생성
 function spawnObstacle() {
-    const y = Math.random() * (canvas.height - 30);
+    const y = Math.random() * (canvas.height - canvas.height / 10);
     obstacles.push({ x: canvas.width, y: y });
 }
 
@@ -91,8 +91,8 @@ function update() {
     // 레이저와 장애물 충돌 처리
     lasers.forEach((laser, laserIndex) => {
         obstacles.forEach((obs, obsIndex) => {
-            if (laser.x > obs.x && laser.x < obs.x + 30 &&
-                laser.y > obs.y && laser.y < obs.y + 30) {
+            if (laser.x > obs.x && laser.x < obs.x + (canvas.height / 10) &&
+                laser.y > obs.y && laser.y < obs.y + (canvas.height / 10)) {
                 obstacles.splice(obsIndex, 1); // 장애물 제거
                 lasers.splice(laserIndex, 1); // 레이저 제거
                 score += 10; // 점수 증가
@@ -109,7 +109,7 @@ function shootLasers() {
     for (let i = 0; i < 10; i++) {
         setTimeout(() => {
             lasers.push({ x: player.x + player.width, y: player.y + player.height / 2 });
-        }, i * 300); // 100ms 간격으로 발사
+        }, i * 300); // 300ms 간격으로 발사
     }
 }
 
